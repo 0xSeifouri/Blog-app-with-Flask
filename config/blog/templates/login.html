@@ -1,0 +1,24 @@
+{% extends '_base.html' %}
+
+{% block page_title %}
+    Login
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-5 border border-dark">
+        <h2>Login</h2>
+        <form method="POST" class="container mt-5"  action="">
+            {{ form.csrf_token }}
+            <div class="mb-3">
+                {{ form.username(class='form-control', placeholder='Username') }}
+            </div>
+            <br>
+            <div class="mb-3">
+                {{ form.password(class='form-control', placeholder='Password') }}
+            </div>
+            <button type="submit" class="btn btn-primary mb-3">Login</button>
+            <span>|</span>
+            <a href="{{ url_for ('register')}}">Don't have a account?</a>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends '_base.html' %}
+
+{% block page_title %}
+    Home
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="container mt-5 border border-dark">
+            <h2>Posts List</h2>
+            {% for post in posts %}
+                <div class="container mt-5 border border-dark">
+                    <h3>{{ post.title|title }}</h3>
+                    <p>{{ post.text|title }}</p>
+                    <small>{{ post.date.strftime('%Y-%m-%d') }}</small> | <small>{{ post.post_author.username|title }}</small>
+                    <div class="container" dir="rtl">
+                        <a href="{{ url_for ('post_detail', pk=post.id) }}" class="btn btn-primary">View</a>
+                    </div>
+                    <br>
+                </div>
+                <hr>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,29 @@
+{% extends '_base.html' %}
+
+{% block page_title %}
+    Update
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-5 border border-dark">
+        <h2>Update Post</h2>
+        <hr>
+        <form method="POST" class="container mt-5"  action="">
+            {{ form.csrf_token }}
+            <div class="mb-3">
+                {{ form.title(class='form-control', placeholder='Title') }}
+                {% if form.title.errors %}
+                    <ul class="alert alert-danger">{% for error in form.title.errors %} <li>{{ error }}</li> {% endfor %} </ul>
+                {% endif %}
+            </div>
+            <br>
+            <div class="mb-3">
+                {{ form.text(class='form-control', placeholder='Text') }}
+                {% if form.text.errors %}
+                    <ul class="alert alert-danger">{% for error in form.text.errors %} <li>{{ error }}</li> {% endfor %} </ul>
+                {% endif %}
+            </div>
+            <button type="submit" class="btn btn-primary mb-3">Update</button>
+        </form>
+    </div>
+{% endblock %}

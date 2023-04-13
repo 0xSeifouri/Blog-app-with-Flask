@@ -1,0 +1,24 @@
+{% extends '_base.html' %}
+
+{% block page_title %}
+    Create Post
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="container mt-5 border border-dark">
+            <h2>New Post</h2>
+            <form method="POST" class="container mt-5"  action="">
+            {{ form.csrf_token }}
+            <div class="mb-3">
+                {{ form.title(class='form-control', placeholder='Post Title') }}
+            </div>
+            <br>
+            <div class="mb-3">
+                {{ form.text(class='form-control', placeholder='Post Text') }}
+            </div>
+            <button type="submit" class="btn btn-primary mb-3">Create</button>
+        </form>
+        </div>
+    </div>
+{% endblock %}
