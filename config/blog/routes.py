@@ -4,12 +4,14 @@ from .models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
 
 
+# Home route
 @app.route('/')
 def home():
     posts = Post.query.all()
     return render_template('home.html', posts=posts)
 
 
+# user register route
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = forms.RegistrationForm()
@@ -24,6 +26,7 @@ def register():
     return render_template('register.html', form=form)
 
 
+# user login route
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
@@ -39,6 +42,7 @@ def login():
     return render_template('login.html', form=form)
 
 
+# user logout route
 @app.route('/logout')
 @login_required
 def logout():
@@ -47,6 +51,7 @@ def logout():
     return redirect('/')
 
 
+# user profile route
 @app.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():
@@ -61,6 +66,7 @@ def profile():
     return render_template('profile.html', form=form)
 
 
+# create new post route
 @app.route('/post/new', methods=['GET', 'POST'])
 @login_required
 def new_post():
@@ -74,12 +80,14 @@ def new_post():
     return render_template('create_post.html', form=form)
 
 
+# post detail route
 @app.route('/post/detail/<int:pk>')
 def post_detail(pk):
     posts = Post.query.get_or_404(pk)
     return render_template('detail_post.html', post=posts)
 
 
+# delete post route
 @app.route('/post/delete/<int:pk>')
 @login_required
 def delete_post(pk):
@@ -93,6 +101,7 @@ def delete_post(pk):
     return redirect('/')
 
 
+# update post route
 @app.route('/post/update/<int:pk>', methods=['GET', 'POST'])
 @login_required
 def update_post(pk):
